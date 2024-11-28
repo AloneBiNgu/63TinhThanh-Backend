@@ -6,9 +6,10 @@ module.exports = generateTokenAndSetCookie = (res, userId) => {
 	});
 
 	res.cookie('token', token, {
+		domain: process.env.DOMAIN || '/',
 		httpOnly: true,
 		secure: process.env.NODE_ENV === 'production',
-		sameSite: 'lax',
+		sameSite: 'none',
 		maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
 	});
 
