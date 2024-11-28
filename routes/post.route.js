@@ -1,7 +1,6 @@
-import express from 'express';
-import { createPost, deletePost, getAllPosts, getPost, updatepost } from '../controllers/post.controller.js';
-import { checkAuth } from '../controllers/auth.controller.js';
-import { verifyToken } from '../middlewares/verifyToken.js';
+const express = require('express');
+const { createPost, deletePost, getAllPosts, getPost, updatepost } = require('../controllers/post.controller.js');
+const { verifyToken } = require('../middlewares/verifyToken.js');
 
 const router = express.Router();
 

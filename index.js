@@ -1,12 +1,12 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import cookieParser from 'cookie-parser';
-import cors from 'cors';
+const express = require('express');
+const dotenv = require('dotenv');
+const cookieParser = require('cookie-parser');
+const cors = require('cors');
 
-import { connectDatabase } from './database/connectDatabase.js';
+const { connectDatabase } = require('./database/connectDatabase.js');
 
-import authRoutes from './routes/auth.route.js';
-import postRoutes from './routes/post.route.js';
+const authRoutes = require('./routes/auth.route.js');
+const postRoutes = require('./routes/post.route.js');
 
 dotenv.config();
 
