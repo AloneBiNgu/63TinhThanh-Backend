@@ -35,7 +35,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/post', postRoutes);
 
 // app.listen(PORT, () => {
-// 	// connectDatabase();
+// 	connectDatabase();
 // 	console.log('Server listening on port 3000');
 // });
 
