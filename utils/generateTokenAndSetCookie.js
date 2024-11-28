@@ -6,7 +6,6 @@ module.exports = generateTokenAndSetCookie = (res, userId) => {
 	});
 
 	res.cookie('token', token, {
-		domain: process.env.DOMAIN || '/',
 		httpOnly: true,
 		secure: process.env.NODE_ENV === 'production',
 		sameSite: 'none',
