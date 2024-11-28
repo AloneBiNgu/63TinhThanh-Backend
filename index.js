@@ -34,10 +34,12 @@ app.use(cookieParser());
 app.use('/api/auth', authRoutes);
 app.use('/api/post', postRoutes);
 
-// app.listen(PORT, () => {
-// 	connectDatabase();
-// 	console.log('Server listening on port 3000');
-// });
-
-connectDatabase();
-module.exports = app;
+if (process.env.NODE_ENV !== 'production') {
+	app.listen(PORT, () => {
+		connectDatabase();
+		console.log('Server listening on port 3000');
+	});
+} else {
+	connectDatabase();
+	module.exports = app;
+}
