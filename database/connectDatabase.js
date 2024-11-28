@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 let isConnected = false;
 
-export const connectDatabase = async () => {
+module.exports = connectDatabase = async () => {
 	if (isConnected) {
 		console.log('Using existing database connection');
 		return;
