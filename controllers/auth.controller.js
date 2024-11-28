@@ -52,12 +52,11 @@ const signIn = async (req, res) => {
 			return res.status(200).json({ success: false, message: 'Invalid cridentails' });
 		}
 
-		generateTokenAndSetCookie(res, user._id);
-
 		res.status(200).json({
 			success: true,
 			message: 'User logged in successfully',
 			user: { ...user, password: undefined },
+			cookie: generateTokenAndSetCookie(res, user._id),
 		});
 	} catch (error) {
 		console.error('SignIn error: ' + error.message);
