@@ -13,7 +13,7 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 80;
 
-const whitelist = ['localhost:5173', '63-tinh-thanh.vercel.app'];
+const whitelist = ['http://localhost:5173', 'https://63-tinh-thanh.vercel.app'];
 const corsOptions = {
 	origin: function (origin, callback) {
 		if (whitelist.indexOf(origin) !== -1 || !origin) {
