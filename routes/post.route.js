@@ -14,4 +14,4 @@ router.post('/create-post', verifyToken, createPost);
 router.delete('/delete-post/:id', verifyToken, deletePost);
 router.put('/update-post/:id', verifyToken, updatepost);
 
-export default router;
+module.exports = router;

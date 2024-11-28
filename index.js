@@ -5,8 +5,8 @@ const cors = require('cors');
 
 const { connectDatabase } = require('./database/connectDatabase.js');
 
-const authRoutes = require('./routes/auth.route.js');
-const postRoutes = require('./routes/post.route.js');
+const authRoutes = require('./routes/auth.route');
+const postRoutes = require('./routes/post.route');
 
 dotenv.config();
 

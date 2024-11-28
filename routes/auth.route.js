@@ -12,4 +12,5 @@ router.get('/check-auth', verifyToken, checkAuth);
 router.post('/sign-up', signUp);
 router.post('/sign-in', signIn);
 router.post('/logout', logout);
-export default router;
+
+module.exports = router;
