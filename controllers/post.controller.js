@@ -1,6 +1,6 @@
 const Post = require('../models/post.model.js');
 
-module.exports = createPost = async (req, res) => {
+const createPost = async (req, res) => {
 	const { title, description, content } = req.body;
 	try {
 		if (!title || !description || !content) {
@@ -23,7 +23,7 @@ module.exports = createPost = async (req, res) => {
 		});
 	}
 };
-module.exports = deletePost = async (req, res) => {
+const deletePost = async (req, res) => {
 	try {
 		await Post.findByIdAndDelete(req.params.id).exec();
 
@@ -39,7 +39,7 @@ module.exports = deletePost = async (req, res) => {
 		});
 	}
 };
-module.exports = updatepost = async (req, res) => {
+const updatePost = async (req, res) => {
 	try {
 		const post = await Post.findByIdAndUpdate(req.params.id, req.body, { new: true }).lean().exec();
 
@@ -56,7 +56,7 @@ module.exports = updatepost = async (req, res) => {
 		});
 	}
 };
-module.exports = getAllPosts = async (req, res) => {
+const getAllPosts = async (req, res) => {
 	try {
 		const posts = await Post.find({}).populate('author', 'name').select('title description content createdAt').lean().exec();
 
@@ -72,7 +72,7 @@ module.exports = getAllPosts = async (req, res) => {
 		});
 	}
 };
-module.exports = getPost = async (req, res) => {
+const getPost = async (req, res) => {
 	try {
 		const post = await Post.findById(req.params.id).lean().exec();
 
@@ -87,4 +87,12 @@ module.exports = getPost = async (req, res) => {
 			message: error.message,
 		});
 	}
+};
+
+module.exports = {
+	createPost,
+	deletePost,
+	updatePost,
+	getAllPosts,
+	getPost,
 };

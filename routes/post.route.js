@@ -1,6 +1,6 @@
 const express = require('express');
-const { createPost, deletePost, getAllPosts, getPost, updatepost } = require('../controllers/post.controller');
-const { verifyToken } = require('../middlewares/verifyToken');
+const { createPost, deletePost, getAllPosts, getPost, updatePost } = require('../controllers/post.controller');
+const verifyToken = require('../middlewares/verifyToken');
 
 const router = express.Router();
 
@@ -12,6 +12,6 @@ router.get('/get-post/:id', getPost);
 router.get('/get-posts', getAllPosts);
 router.post('/create-post', verifyToken, createPost);
 router.delete('/delete-post/:id', verifyToken, deletePost);
-router.put('/update-post/:id', verifyToken, updatepost);
+router.put('/update-post/:id', verifyToken, updatePost);
 
 module.exports = router;

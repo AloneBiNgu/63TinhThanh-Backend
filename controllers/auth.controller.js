@@ -2,7 +2,7 @@ const User = require('../models/user.model');
 const { generateTokenAndSetCookie } = require('../utils/generateTokenAndSetCookie');
 const bcrypt = require('bcrypt');
 
-module.exports = signUp = async (req, res) => {
+const signUp = async (req, res) => {
 	const { email, password, username } = req.body;
 
 	try {
@@ -35,7 +35,7 @@ module.exports = signUp = async (req, res) => {
 	}
 };
 
-module.exports = signIn = async (req, res) => {
+const signIn = async (req, res) => {
 	const { email, password } = req.body;
 	try {
 		if (!email || !password) {
@@ -68,12 +68,12 @@ module.exports = signIn = async (req, res) => {
 	}
 };
 
-module.exports = logout = async (req, res) => {
+const logout = async (req, res) => {
 	res.clearCookie('token');
 	res.json({ success: true, message: 'User logged out successfully' });
 };
 
-module.exports = checkAuth = async (req, res) => {
+const checkAuth = async (req, res) => {
 	try {
 		const user = await User.findById(req.userId).select('-password').lean().exec();
 		if (!user) {
@@ -92,3 +92,5 @@ module.exports = checkAuth = async (req, res) => {
 		});
 	}
 };
+
+module.exports = { signUp, signIn, logout, checkAuth };

@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
-const { connectDatabase } = require('./database/connectDatabase.js');
+const connectDatabase = require('./database/connectDatabase.js');
 
 const authRoutes = require('./routes/auth.route');
 const postRoutes = require('./routes/post.route');
@@ -35,7 +35,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/post', postRoutes);
 
 // app.listen(PORT, () => {
-// 	connectDatabase();
+// 	// connectDatabase();
 // 	console.log('Server listening on port 3000');
 // });
 
