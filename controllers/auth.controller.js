@@ -68,7 +68,12 @@ const signIn = async (req, res) => {
 };
 
 const logout = async (req, res) => {
-	res.cookie('token', '');
+	res.cookie('token', '', {
+		httpOnly: true,
+		secure: process.env.NODE_ENV === 'production',
+		sameSite: 'None',
+		maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
+	});
 	res.json({ success: true, message: 'User logged out successfully' });
 };
 
