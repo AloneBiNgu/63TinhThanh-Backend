@@ -68,7 +68,7 @@ const signIn = async (req, res) => {
 };
 
 const logout = async (req, res) => {
-	res.clearCookie('token');
+	res.cookie('token', '');
 	res.json({ success: true, message: 'User logged out successfully' });
 };
 
