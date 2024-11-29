@@ -1,4 +1,5 @@
 const Post = require('../models/post.model.js');
+const { minify } = require('html-minifier');
 
 const createPost = async (req, res) => {
 	const { title, description, content } = req.body;
@@ -7,7 +8,7 @@ const createPost = async (req, res) => {
 			return res.status(200).json({ success: false, message: 'All fields are required' });
 		}
 
-		const post = new Post({ title, description, content, author: req.userId });
+		const post = new Post({ title, description, content: minify(content), author: req.userId });
 		await post.save();
 
 		res.status(201).json({
@@ -58,7 +59,7 @@ const updatePost = async (req, res) => {
 };
 const getAllPosts = async (req, res) => {
 	try {
-		const posts = await Post.find({}).populate('author', 'name').select('title description content createdAt').lean().exec();
+		const posts = await Post.find({}).populate('author', 'name').select('title description content createdAt -_id -__v').lean().exec();
 
 		res.status(200).json({
 			success: true,

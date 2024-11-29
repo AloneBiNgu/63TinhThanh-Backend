@@ -36,13 +36,14 @@ const signUp = async (req, res) => {
 };
 
 const signIn = async (req, res) => {
-	const { email, password } = req.body;
+	const { username, password } = req.body;
+	console.log(username, password);
 	try {
-		if (!email || !password) {
+		if (!username || !password) {
 			return res.status(200).json({ success: false, message: 'All fields are required' });
 		}
 
-		const user = await User.findOne({ email }).lean().exec();
+		const user = await User.findOne({ name: username }).lean().exec();
 		if (!user) {
 			return res.status(200).json({ success: false, message: 'Invalid cridentails' });
 		}
@@ -79,7 +80,7 @@ const logout = async (req, res) => {
 
 const checkAuth = async (req, res) => {
 	try {
-		const user = await User.findById(req.userId).select('-password').lean().exec();
+		const user = await User.findById(req.userId).select('-password -_id -__v').lean().exec();
 		if (!user) {
 			return res.status(200).json({ success: false, message: 'User not found' });
 		}
