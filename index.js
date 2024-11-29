@@ -35,7 +35,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/post', postRoutes);
 
 if (process.env.NODE_ENV !== 'production') {
-	app.listen(PORT, () => {
+	app.listen(PORT, '0.0.0.0', () => {
 		connectDatabase();
 		console.log('Server listening on port 3000');
 	});
