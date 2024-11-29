@@ -59,7 +59,7 @@ const updatePost = async (req, res) => {
 };
 const getAllPosts = async (req, res) => {
 	try {
-		const posts = await Post.find({}).populate('author', 'name').select('title description content createdAt -_id -__v').lean().exec();
+		const posts = await Post.find({}).populate('author', 'name').select('title description content createdAt').lean().exec();
 
 		res.status(200).json({
 			success: true,
