@@ -59,12 +59,25 @@ const updatePost = async (req, res) => {
 };
 const getAllPosts = async (req, res) => {
 	try {
-		const posts = await Post.find({}).populate('author', 'name').select('title description content createdAt').lean().exec();
+		const { page } = req.query;
+		const postsPerPage = 3;
+		let posts = page
+			? await Post.find({})
+					.skip((page - 1) * postsPerPage)
+					.limit(postsPerPage)
+					.populate('author', 'name')
+					.select('title description content createdAt')
+					.sort('createdAt')
+					.lean()
+					.exec()
+			: await Post.find({}).populate('author', 'name').select('title description content createdAt').sort('createdAt').lean().exec();
 
 		res.status(200).json({
 			success: true,
 			posts,
 		});
+
+		posts = null;
 	} catch (error) {
 		console.error('Create post error: ' + error.message);
 		res.status(400).json({
@@ -75,7 +88,7 @@ const getAllPosts = async (req, res) => {
 };
 const getPost = async (req, res) => {
 	try {
-		const post = await Post.findById(req.params.id).lean().exec();
+		const post = await Post.findById(req.params.id).populate('author', 'name').lean().exec();
 
 		res.status(200).json({
 			success: true,
