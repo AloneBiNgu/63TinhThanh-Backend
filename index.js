@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 80;
 const whitelist = ['http://localhost:5173', 'https://63-tinh-thanh.vercel.app', 'https://ba-mien-mot-coi.vercel.app'];
 const corsOptions = {
 	origin: function (origin, callback) {
-		if (whitelist.indexOf(origin) !== -1) {
+		if (whitelist.indexOf(origin) !== -1 || !origin) {
 			callback(null, true);
 		} else {
 			callback(new Error('Not allowed by CORS'));
