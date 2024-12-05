@@ -67,7 +67,7 @@ const getAllPosts = async (req, res) => {
 					.limit(postsPerPage)
 					.populate('author', 'name')
 					.select('title description content createdAt')
-					.sort('createdAt')
+					.sort('-createdAt')
 					.lean()
 					.exec()
 			: await Post.find({}).populate('author', 'name').select('title description content createdAt').sort('createdAt').lean().exec();
